@@ -18,7 +18,7 @@ public class Currency {
 
     @SerializedName("price_usd")
     @Expose
-    private float mPriceUsd;
+    private double mPriceUsd;
 
     @SerializedName("price_btc")
     @Expose
@@ -26,11 +26,11 @@ public class Currency {
 
     @SerializedName("market_cap_usd")
     @Expose
-    private String mMarketCapUsd;
+    private double mMarketCapUsd;
 
     @SerializedName("percent_change_1h")
     @Expose
-    private String mPercentChange1h;
+    private float mPercentChange1h;
 
     @SerializedName("percent_change_24h")
     @Expose
@@ -38,7 +38,7 @@ public class Currency {
 
     @SerializedName("percent_change_7d")
     @Expose
-    private String mPercentChange7d;
+    private float mPercentChange7d;
 
     public String getName() {
         return mName;
@@ -64,11 +64,11 @@ public class Currency {
         mRank = rank;
     }
 
-    public float getPriceUsd() {
+    public double getPriceUsd() {
         return mPriceUsd;
     }
 
-    public void setPriceUsd(float priceUsd) {
+    public void setPriceUsd(double priceUsd) {
         mPriceUsd = priceUsd;
     }
 
@@ -80,19 +80,19 @@ public class Currency {
         mPriceBtc = priceBtc;
     }
 
-    public String getMarketCapUsd() {
+    public double getMarketCapUsd() {
         return mMarketCapUsd;
     }
 
-    public void setMarketCapUsd(String marketCapUsd) {
+    public void setMarketCapUsd(double marketCapUsd) {
         mMarketCapUsd = marketCapUsd;
     }
 
-    public String getPercentChange1h() {
+    public float getPercentChange1h() {
         return mPercentChange1h;
     }
 
-    public void setPercentChange1h(String percentChange1h) {
+    public void setPercentChange1h(float percentChange1h) {
         mPercentChange1h = percentChange1h;
     }
 
@@ -104,11 +104,11 @@ public class Currency {
         mPriceChange24h = priceChange24h;
     }
 
-    public String getPercentChange7d() {
+    public float getPercentChange7d() {
         return mPercentChange7d;
     }
 
-    public void setPercentChange7d(String percentChange7d) {
+    public void setPercentChange7d(float percentChange7d) {
         mPercentChange7d = percentChange7d;
     }
 

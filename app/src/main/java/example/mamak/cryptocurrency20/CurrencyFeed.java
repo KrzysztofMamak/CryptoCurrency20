@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -62,9 +60,18 @@ public class CurrencyFeed {
         return mCurrencies;
     }
 
-    public Currency getCurrency(int rank) {
+    public Currency getCurrencyByRank(int rank) {
         for (Currency currency : mCurrencies) {
             if (currency.getRank() == rank) {
+                return currency;
+            }
+        }
+        return null;
+    }
+
+    public Currency getCurrency(String symbol) {
+        for (Currency currency : mCurrencies) {
+            if (currency.getSymbol().equals(symbol)) {
                 return currency;
             }
         }

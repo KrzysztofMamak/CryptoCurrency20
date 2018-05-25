@@ -10,18 +10,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class CurrencyListFragment extends Fragment {
 
     private RecyclerView mCurrencyRecyclerView;
     private CurrencyAdapter mAdapter;
+    private TextView mUpdateTextView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_currency_list, container, false);
 
+        mUpdateTextView = (TextView) view.findViewById(R.id.update_text_view);
         mCurrencyRecyclerView = (RecyclerView) view.findViewById(R.id.currency_recycler_view);
         mCurrencyRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         updateUI();
@@ -44,6 +48,18 @@ public class CurrencyListFragment extends Fragment {
         } else {
             mAdapter.notifyDataSetChanged();
         }
+        changeLastUpdate();
+    }
+
+    private void changeLastUpdate() {
+        Date today;
+        String result;
+        SimpleDateFormat formatter;
+
+        formatter = new SimpleDateFormat("d MMM yyyy, H:mm");
+        today = new Date();
+        result = formatter.format(today);
+        mUpdateTextView.setText("Last update: " + result);
     }
 
     private class CurrencyHolder extends RecyclerView.ViewHolder
@@ -72,7 +88,7 @@ public class CurrencyListFragment extends Fragment {
 
         @Override
         public void onClick(View v) {
-            Intent intent = CurrencyActivity.newIntent(getActivity(), mCurrency.getRank());
+            Intent intent = CurrencyPagerActivity.newIntent(getActivity(), mCurrency.getSymbol());
             startActivity(intent);
         }
     }
