@@ -96,7 +96,8 @@ public class BackgroundWorker extends AsyncTask<Currency, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        Log.d(TAG, result);
+        if (result != null)
+            Log.d(TAG, result);
     }
 
     @Override

@@ -9,6 +9,6 @@ import retrofit2.http.Headers;
 public interface FeedAPI {
 
     @Headers("Content-type: application/json")
-    @GET("v1/ticker/?limit=20")
+    @GET("v1/ticker/?limit=100")
     Call<List<Currency>> getFeed();
 }
