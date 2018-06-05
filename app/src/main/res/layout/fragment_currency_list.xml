@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@android:color/darker_gray"
     android:weightSum="100">
 
     <android.support.v7.widget.RecyclerView
@@ -12,15 +12,15 @@
         android:id="@+id/currency_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="96"
-        android:background="@color/colorPrimaryDark">
+        android:layout_weight="96">
 
     </android.support.v7.widget.RecyclerView>
 
     <TextView
         android:id="@+id/update_text_view"
+        android:background="@color/colorPrimaryDark"
         android:textColor="#ffffff"
-        android:textSize="17dp"
+        android:textSize="14dp"
         tools:text="Last updated: "
         android:layout_width="match_parent"
         android:layout_height="0dp"

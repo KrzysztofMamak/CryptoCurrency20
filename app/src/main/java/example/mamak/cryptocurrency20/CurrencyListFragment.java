@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -69,6 +70,7 @@ public class CurrencyListFragment extends Fragment {
         private TextView mRankTextView;
         private TextView mNameTextView;
         private TextView mPriceUsdTextView;
+        private ImageView mChangeImageView;
 
         public CurrencyHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.list_item_currency, parent, false));
@@ -77,6 +79,7 @@ public class CurrencyListFragment extends Fragment {
             mRankTextView = (TextView) itemView.findViewById(R.id.currency_rank);
             mNameTextView = (TextView) itemView.findViewById(R.id.currency_name);
             mPriceUsdTextView = (TextView) itemView.findViewById(R.id.currency_price_usd);
+            mChangeImageView = (ImageView) itemView.findViewById(R.id.change_image_view);
         }
 
         public void bind(Currency currency) {
@@ -84,6 +87,13 @@ public class CurrencyListFragment extends Fragment {
             mRankTextView.setText(String.valueOf(mCurrency.getRank()) + ".");
             mNameTextView.setText(mCurrency.getName());
             mPriceUsdTextView.setText(String.valueOf(mCurrency.getPriceUsd()) + " $");
+            if (mCurrency.getPercentChange1h() > 0) {
+                mChangeImageView.setImageResource(R.drawable.ic_arrow_up);
+            } else if (mCurrency.getPercentChange1h() < 0) {
+                mChangeImageView.setImageResource(R.drawable.ic_arrow_down);
+            } else {
+                mChangeImageView.setImageResource(R.drawable.ic_line);
+            }
         }
 
         @Override
