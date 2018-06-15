@@ -14,6 +14,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class BackgroundWorker extends AsyncTask<Currency, Void, String> {
 
@@ -33,6 +35,10 @@ public class BackgroundWorker extends AsyncTask<Currency, Void, String> {
             String percent_change_1h = String.valueOf(currency.getPercentChange1h());
             String percent_change_24h = String.valueOf(currency.getPriceChange24h());
             String percent_change_7d = String.valueOf(currency.getPercentChange7d());
+            Date date = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("H:mm EEE, MMM d, yyyy");
+            String dateString = formatter.format(date);
+            Log.d("-------------------", dateString);
             URL url = new URL(insert_url);
             HttpURLConnection httpURLConnection =
                     (HttpURLConnection) url.openConnection();
@@ -61,7 +67,9 @@ public class BackgroundWorker extends AsyncTask<Currency, Void, String> {
                     + "&" + URLEncoder.encode("percent_change_24h", "UTF-8")
                     + "=" + URLEncoder.encode(percent_change_24h, "UTF-8")
                     + "&" + URLEncoder.encode("percent_change_7d", "UTF-8")
-                    + "=" + URLEncoder.encode(percent_change_7d, "UTF-8");
+                    + "=" + URLEncoder.encode(percent_change_7d, "UTF-8")
+                    + "&" + URLEncoder.encode("date", "UTF-8")
+                    + "=" + URLEncoder.encode(dateString, "UTF-8");
             bufferedWriter.write(post_data);
             bufferedWriter.flush();
             bufferedWriter.close();

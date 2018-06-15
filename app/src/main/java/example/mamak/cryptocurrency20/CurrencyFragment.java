@@ -2,18 +2,27 @@ package example.mamak.cryptocurrency20;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
+
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class CurrencyFragment extends Fragment {
 
     private static final String ARG_CURRENCY_SYMBOL = "currency_symbol";
 
     private Currency mCurrency;
-    private Button mInsertCurrencyButton;
     private TextView mNameTextView;
     private TextView mRankTextView;
     private TextView mPriceUsdTextView;
@@ -22,6 +31,7 @@ public class CurrencyFragment extends Fragment {
     private TextView mChange1hTextView;
     private TextView mChange24hTextView;
     private TextView mChange7dTextView;
+    private GraphView mGraphView;
 
     public static CurrencyFragment newInstance(String symbol) {
         Bundle args = new Bundle();
@@ -36,6 +46,7 @@ public class CurrencyFragment extends Fragment {
         super.onCreate(savedInstanceState);
         String symbol = getArguments().getString(ARG_CURRENCY_SYMBOL);
         mCurrency = CurrencyFeed.get(getActivity()).getCurrency(symbol);
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -54,14 +65,27 @@ public class CurrencyFragment extends Fragment {
 
         mNameTextView.setText(mCurrency.getName() + "(" + mCurrency.getSymbol() + ")");
         mRankTextView.setText(String.valueOf("Rank: " + mCurrency.getRank()));
-        mPriceUsdTextView.setText(String.valueOf("Price: " + mCurrency.getPriceUsd()) + "$");
-        mPriceBtcTextView.setText(String.valueOf("Price(BTC): " + mCurrency.getPriceBtc()) + "%");
-        mMarketCapTextView.setText(String.valueOf("Market cap: " + mCurrency.getMarketCapUsd()) + "$");
-        mChange1hTextView.setText(String.valueOf("Change(1h): " + mCurrency.getPercentChange1h()) + "%");
-        mChange24hTextView.setText(String.valueOf("Change(24h): " + mCurrency.getPriceChange24h()) + "%");
-        mChange7dTextView.setText(String.valueOf("Change(7d): " + mCurrency.getPercentChange7d()) + "%");
+        mPriceUsdTextView.setText(String.valueOf(mCurrency.getPriceUsd()) + "$");
+        mPriceBtcTextView.setText(String.valueOf(mCurrency.getPriceBtc()));
+        mMarketCapTextView.setText(String.valueOf(mCurrency.getMarketCapUsd()) + "$");
+        mChange1hTextView.setText(String.valueOf(mCurrency.getPercentChange1h()));
+        mChange24hTextView.setText(String.valueOf(mCurrency.getPriceChange24h()));
+        mChange7dTextView.setText(String.valueOf(mCurrency.getPercentChange7d()));
 
-        mInsertCurrencyButton = (Button) v.findViewById(R.id.insert_currency_button);
+        mGraphView = (GraphView) v.findViewById(R.id.graph);
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
+                new DataPoint(0, 1),
+                new DataPoint(1, 5),
+                new DataPoint(2, 3),
+                new DataPoint(3, 2),
+                new DataPoint(4, 6)
+        });
+        series.setColor(R.color.colorPrimaryDark);
+        series.setBackgroundColor(R.color.colorPrimaryDark);
+        series.setDrawAsPath(true);
+        mGraphView.addSeries(series);
+
+       /* mInsertCurrencyButton = (Button) v.findViewById(R.id.insert_currency_button);
         mInsertCurrencyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,8 +93,27 @@ public class CurrencyFragment extends Fragment {
                         new BackgroundWorker();
                 backgroundWorker.execute(mCurrency);
             }
-        });
+        });*/
 
         return v;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.fragment_currency, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.insert_record:
+                BackgroundWorker backgroundWorker =
+                        new BackgroundWorker();
+                backgroundWorker.execute(mCurrency);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
