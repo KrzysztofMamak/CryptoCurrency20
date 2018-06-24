@@ -3,7 +3,9 @@ package example.mamak.cryptocurrency20;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Currency {
+import java.io.Serializable;
+
+public class Currency implements Serializable {
     @SerializedName("name")
     @Expose
     private String mName;
@@ -26,7 +28,7 @@ public class Currency {
 
     @SerializedName("market_cap_usd")
     @Expose
-    private double mMarketCapUsd;
+    private long mMarketCapUsd;
 
     @SerializedName("percent_change_1h")
     @Expose
@@ -80,11 +82,11 @@ public class Currency {
         mPriceBtc = priceBtc;
     }
 
-    public double getMarketCapUsd() {
+    public long getMarketCapUsd() {
         return mMarketCapUsd;
     }
 
-    public void setMarketCapUsd(double marketCapUsd) {
+    public void setMarketCapUsd(long marketCapUsd) {
         mMarketCapUsd = marketCapUsd;
     }
 

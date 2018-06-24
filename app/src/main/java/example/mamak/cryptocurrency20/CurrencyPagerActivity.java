@@ -12,16 +12,15 @@ import android.support.v7.app.AppCompatActivity;
 import java.util.List;
 
 public class CurrencyPagerActivity extends AppCompatActivity {
-
-    private static final String EXTRA_CURRENCY_SYMBOL =
-            "example.mamak.cryptocurrency20.currency_id";
+    private static final String EXTRA_SYMBOL =
+            "example.mamak.cryptocurrency20.symbol";
 
     private ViewPager mViewPager;
     private List<Currency> mCurrencies;
 
     public static Intent newIntent(Context packageContext, String symbol) {
         Intent intent = new Intent(packageContext, CurrencyPagerActivity.class);
-        intent.putExtra(EXTRA_CURRENCY_SYMBOL, symbol);
+        intent.putExtra(EXTRA_SYMBOL, symbol);
         return intent;
     }
 
@@ -30,11 +29,11 @@ public class CurrencyPagerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_currency_pager);
 
-        String currencySymbol = getIntent().getStringExtra(EXTRA_CURRENCY_SYMBOL);
+        String currencySymbol = getIntent().getStringExtra(EXTRA_SYMBOL);
 
         mViewPager = (ViewPager) findViewById(R.id.currency_view_pager);
 
-        mCurrencies = CurrencyFeed.get(this).getCurrencies();
+        mCurrencies = CurrencyLab.get().getCurrencies();
         FragmentManager fragmentManager = getSupportFragmentManager();
         mViewPager.setAdapter(new FragmentStatePagerAdapter(fragmentManager) {
             @Override
@@ -54,6 +53,7 @@ public class CurrencyPagerActivity extends AppCompatActivity {
                 mViewPager.setCurrentItem(i);
                 break;
             }
+
         }
     }
 }

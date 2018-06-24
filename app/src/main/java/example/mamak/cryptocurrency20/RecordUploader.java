@@ -17,14 +17,14 @@ import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class BackgroundWorker extends AsyncTask<Currency, Void, String> {
+public class RecordUploader extends AsyncTask<Currency, Void, String> {
 
-    private static final String TAG = "BackgroundWorker";
+    private static final String TAG = "RecordUploader";
 
     @Override
     protected String doInBackground(Currency... params) {
         Currency currency = params[0];
-        String insert_url = "http://192.168.0.108/insertcurrency.php";
+        String insert_url = "http://192.168.0.105/insertcurrency.php";
         try {
             String name = currency.getName();
             String symbol = currency.getSymbol();
