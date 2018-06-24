@@ -12,11 +12,6 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface RetrofitAPI {
-
-    @Headers("Content-type: application/json")
-    @GET("v1/ticker/?limit=100")
-    Call<List<Currency>> getFeed();
-
     @Headers("Content-type: application/json")
     @GET("v1/ticker/")
     Call<List<Currency>> getCurrencies(@Query("start") int start,

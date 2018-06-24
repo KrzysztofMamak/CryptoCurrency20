@@ -30,10 +30,6 @@ public class CurrencyLab {
         return null;
     }
 
-    public void addCurrency(Currency currency) {
-        mCurrencies.add(currency);
-    }
-
     public void addAll(List<Currency> list) {
         mCurrencies.addAll(list);
     }

@@ -62,56 +62,28 @@ public class Currency implements Serializable {
         return mRank;
     }
 
-    public void setRank(int rank) {
-        mRank = rank;
-    }
-
     public double getPriceUsd() {
         return mPriceUsd;
-    }
-
-    public void setPriceUsd(double priceUsd) {
-        mPriceUsd = priceUsd;
     }
 
     public double getPriceBtc() {
         return mPriceBtc;
     }
 
-    public void setPriceBtc(double priceBtc) {
-        mPriceBtc = priceBtc;
-    }
-
     public long getMarketCapUsd() {
         return mMarketCapUsd;
-    }
-
-    public void setMarketCapUsd(long marketCapUsd) {
-        mMarketCapUsd = marketCapUsd;
     }
 
     public float getPercentChange1h() {
         return mPercentChange1h;
     }
 
-    public void setPercentChange1h(float percentChange1h) {
-        mPercentChange1h = percentChange1h;
-    }
-
     public float getPriceChange24h() {
         return mPriceChange24h;
     }
 
-    public void setPriceChange24h(float priceChange24h) {
-        mPriceChange24h = priceChange24h;
-    }
-
     public float getPercentChange7d() {
         return mPercentChange7d;
-    }
-
-    public void setPercentChange7d(float percentChange7d) {
-        mPercentChange7d = percentChange7d;
     }
 
     @Override

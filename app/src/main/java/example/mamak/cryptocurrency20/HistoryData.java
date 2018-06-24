@@ -13,8 +13,4 @@ public class HistoryData {
     public List<HistoryItem> getHistoryItemList() {
         return mHistoryItemList;
     }
-
-    public void setHistoryItemList(List<HistoryItem> historyItemList) {
-        mHistoryItemList = historyItemList;
-    }
 }

@@ -53,9 +53,6 @@ public class CurrencyListFragment extends Fragment {
                 int lastPosition = layoutManager.findLastVisibleItemPosition();
                 int itemCount = mCurrencyRecyclerView.getAdapter().getItemCount();
 
-                Log.d(TAG, "lastPosition: " + String.valueOf(lastPosition));
-                Log.d(TAG, "itemCount: " + String.valueOf(itemCount));
-
                 if (mIsLoading == false && lastPosition == itemCount - 1) {
                     updateCurrencies(itemCount);
                     mIsLoading = true;

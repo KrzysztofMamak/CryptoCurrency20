@@ -34,51 +34,7 @@ public class HistoryItem {
         mTime = time;
     }
 
-    public double getClose() {
-        return mClose;
-    }
-
-    public void setClose(double close) {
-        mClose = close;
-    }
-
     public double getHigh() {
         return mHigh;
-    }
-
-    public void setHigh(double high) {
-        mHigh = high;
-    }
-
-    public double getLow() {
-        return mLow;
-    }
-
-    public void setLow(double low) {
-        mLow = low;
-    }
-
-    public double getOpen() {
-        return mOpen;
-    }
-
-    public void setOpen(double open) {
-        mOpen = open;
-    }
-
-    public double getVolumeFrom() {
-        return mVolumeFrom;
-    }
-
-    public void setVolumeFrom(double volumeFrom) {
-        mVolumeFrom = volumeFrom;
-    }
-
-    public double getVolumeTo() {
-        return mVolumeTo;
-    }
-
-    public void setVolumeTo(double volumeTo) {
-        mVolumeTo = volumeTo;
     }
 }

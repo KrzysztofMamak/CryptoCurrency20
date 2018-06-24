@@ -1,7 +1,5 @@
 package example.mamak.cryptocurrency20;
 
-import android.util.Log;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
